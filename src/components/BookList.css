@@ -37,7 +37,7 @@
 
 .search-input input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #2405af;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .book-table th {
-  background: linear-gradient(135deg, #260b58 0%, #3f1052 100%);
+  background: linear-gradient(135deg, #2405af 0%, #6e8af2 100%);
   color: white;
   padding: 1rem;
   text-align: left;
