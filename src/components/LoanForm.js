@@ -106,15 +106,7 @@ const LoanForm = ({ loan = null, onClose, onSuccess }) => {
     }
   };
 
-  const getBookTitle = (bookId) => {
-    const book = bookOptions.find(b => b._id === bookId);
-    return book ? `${book.title} by ${book.author} (${book.copies} copies)` : 'Select a book';
-  };
 
-  const getMemberName = (memberId) => {
-    const member = memberOptions.find(m => m._id === memberId);
-    return member ? `${member.name} (${member.email})` : 'Select a member';
-  };
 
   return (
     <div className="loan-form-container">

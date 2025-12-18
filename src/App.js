@@ -321,6 +321,14 @@ function App() {
             />
           </Routes>
         </main>
+        <footer className="app-footer">
+          <div className="footer-content">
+            <p>© {new Date().getFullYear()} Library System</p>
+            <p className="footer-subtext">
+              React · REST API · Secure Library Platform
+            </p>
+          </div>
+        </footer>
       </div>
     </Router>
   );

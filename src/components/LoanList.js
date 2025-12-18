@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FaBook,
   FaUser,
   FaCalendarAlt,
   FaExchangeAlt,
   FaCheck,
-  FaTimes,
   FaPlus,
   FaEdit,
 } from 'react-icons/fa';
-import { loanAPI, bookAPI, memberAPI } from '../services/api';
+import { loanAPI } from '../services/api';
 import './LoanList.css';
 
 const LoanList = ({ onAddLoan, onEditLoan, refreshKey }) => {
@@ -21,14 +20,7 @@ const LoanList = ({ onAddLoan, onEditLoan, refreshKey }) => {
   const [showReturnModal, setShowReturnModal] = useState(false);
   const [selectedLoan, setSelectedLoan] = useState(null);
 
-  /* --------------------------------------------------------------
-   *  FETCH LOANS ONLY (since backend already populates)
-   * ------------------------------------------------------------ */
-  useEffect(() => {
-    fetchLoans();
-  }, [currentPage, refreshKey]);
-
-  const fetchLoans = async () => {
+  const fetchLoans = useCallback(async () => {
     try {
       setLoading(true);
       const loansRes = await loanAPI.getAllLoans(currentPage, 10);
@@ -51,7 +43,14 @@ const LoanList = ({ onAddLoan, onEditLoan, refreshKey }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage]);
+
+  /* --------------------------------------------------------------
+   *  FETCH LOANS ONLY (since backend already populates)
+   * ------------------------------------------------------------ */
+  useEffect(() => {
+    fetchLoans();
+  }, [currentPage, fetchLoans, refreshKey]);
 
   const handleReturnBook = async (loanId) => {
     try {
